@@ -83,15 +83,6 @@ class BusComplete:
 
         self.setScore(sum)
 
-
-    # def describe(self):
-    #     print("Boy:          ",self.getBoyName())
-    #     print("Girl:         ",self.getGirlName())
-    #     print("PLant:        ",self.getPlant())
-    #     print("Inanimate:    ",self.getInanimate())
-    #     print("Animal:       ",self.getAnimal())
-    #     print("Country:      ",self.getCountry())
-
     def sumTotal(self, lastScore):
         ts = self.getTotalScore() + lastScore
         self.setTotalScore(ts)
@@ -107,5 +98,3 @@ class BusComplete:
 
     def modifyScorePlus(self):
         self.setScore(self.getScore()+5)
-
-
