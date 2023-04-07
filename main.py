@@ -1,5 +1,5 @@
 import threading
-from tkinter import *
+from customtkinter import *
 from tkinter import messagebox
 
 from BusComplete import BusComplete
@@ -9,16 +9,14 @@ bc = BusComplete()
 
 def Window1():
     global MasterLitter, MasterLable, MasterButton
-    top.geometry('400x250')
-    MasterLable = Label(top, text='Master Litter', font=('arial 18 bold'))
-    MasterLable.pack()
-    MasterLitter = Entry(top, width=20, font=('arial 18 bold'))
+    MasterLable = CTkLabel(top, text='Master Litter', font=('arial', 18, 'bold'))
+    MasterLable.pack(pady=5)
+    MasterLitter = CTkEntry(top, width=200, font=('arial', 18, 'bold'))
     MasterLitter.pack(pady=8)
     MasterLitter.focus_set()
     MasterLitter.bind('<Return>', setMasterLitter)
-    MasterButton = Button(top, text='Continue', width=10, font=('arial 12 bold'), pady=8, activebackground='gray',
-                          activeforeground='#33e586', command=setMasterLitter)
-    MasterButton.pack()
+    MasterButton = CTkButton(top, text='Continue', font=('arial', 12, 'bold'), command=setMasterLitter)
+    MasterButton.pack(pady=5)
     MasterButton.bind('<Return>', setMasterLitter)
 
 
@@ -43,52 +41,51 @@ def setMasterLitter(*args):
 def Window2():
     global MasterPlay, BackButton, RevisionButton, Separator, BoyName, BoyEntry, GirlName, GrilEntry
     global PlantName, PlantEntry, Animal, AnimalEntry, Inanimate, InanimateEntry, Country, CountryEntry
-    top.geometry('400x600')
-    MasterPlay = Label(top, text=f'The Master Litter: {bc.getMasterLitter()}', font=('arial 14 bold'))
-    MasterPlay.pack()
-    Separator = Label(top, text='-' * 100, font=('arial '))
-    Separator.pack()
-    BoyName = Label(top, text='Boy', font=('arial 12 bold'), pady=5)
-    BoyName.pack()
-    BoyEntry = Entry(top, font=('arial 14'), width=30)
+    MasterPlay = CTkLabel(top, text=f'The Master Litter: {bc.getMasterLitter()}', font=('arial', 14, 'bold'))
+    MasterPlay.pack(pady=5)
+    Separator = CTkLabel(top, text='-' * 100)
+    Separator.pack(pady=5)
+    BoyName = CTkLabel(top, text='Boy', font=('arial', 15, 'bold'))
+    BoyName.pack(pady=5)
+    BoyEntry = CTkEntry(top, font=('arial', 14), width=200)
     BoyEntry.pack(pady=5)
     BoyEntry.bind('<Return>', revision)
     BoyEntry.bind('<Escape>', BackToMain)
     BoyEntry.focus_set()
-    GirlName = Label(top, text='Girl', font=('arial 12 bold'), pady=5)
-    GirlName.pack()
-    GrilEntry = Entry(top, font=('arial 14'), width=30)
+    GirlName = CTkLabel(top, text='Girl', font=('arial', 15, 'bold'))
+    GirlName.pack(pady=5)
+    GrilEntry = CTkEntry(top, font=('arial', 14), width=200)
     GrilEntry.pack(pady=5)
     GrilEntry.bind('<Return>', revision)
     GrilEntry.bind('<Escape>', BackToMain)
-    PlantName = Label(top, text='Plant', font=('arial 12 bold'), pady=5)
-    PlantName.pack()
-    PlantEntry = Entry(top, font=('arial 14'), width=30)
+    PlantName = CTkLabel(top, text='Plant', font=('arial', 15, 'bold'))
+    PlantName.pack(pady=5)
+    PlantEntry = CTkEntry(top, font=('arial', 14), width=200)
     PlantEntry.pack(pady=5)
     PlantEntry.bind('<Return>', revision)
     PlantEntry.bind('<Escape>', BackToMain)
-    Inanimate = Label(top, text='Inanimate', font=('arial 12 bold'), pady=5)
-    Inanimate.pack()
-    InanimateEntry = Entry(top, font=('arial 14'), width=30)
+    Inanimate = CTkLabel(top, text='Inanimate', font=('arial', 15, 'bold'))
+    Inanimate.pack(pady=5)
+    InanimateEntry = CTkEntry(top, font=('arial', 14), width=200)
     InanimateEntry.pack(pady=5)
     InanimateEntry.bind('<Return>', revision)
     InanimateEntry.bind('<Escape>', BackToMain)
-    Animal = Label(top, text='Animal', font=('arial 12 bold'), pady=5)
-    Animal.pack()
-    AnimalEntry = Entry(top, font=('arial 14'), width=30)
+    Animal = CTkLabel(top, text='Animal', font=('arial', 15, 'bold'))
+    Animal.pack(pady=5)
+    AnimalEntry = CTkEntry(top, font=('arial', 14), width=200)
     AnimalEntry.pack(pady=5)
     AnimalEntry.bind('<Return>', revision)
     AnimalEntry.bind('<Escape>', BackToMain)
-    Country = Label(top, text='Country', font=('arial 12 bold'), pady=5)
-    Country.pack()
-    CountryEntry = Entry(top, font=('arial 14'), width=30)
+    Country = CTkLabel(top, text='Country', font=('arial', 15, 'bold'))
+    Country.pack(pady=5)
+    CountryEntry = CTkEntry(top, font=('arial', 14), width=200)
     CountryEntry.pack(pady=5)
     CountryEntry.bind('<Return>', revision)
     CountryEntry.bind('<Escape>', BackToMain)
-    RevisionButton = Button(top, text='Continue', font='arial 12 bold', width=10, command=revision)
-    RevisionButton.pack()
+    RevisionButton = CTkButton(top, text='Continue', font=('arial', 15, 'bold'), command=revision)
+    RevisionButton.pack(pady=5)
     RevisionButton.bind('<Return>', revision)
-    BackButton = Button(top, text='Back', font='arial 12 bold', width=10, command=BackToMain)
+    BackButton = CTkButton(top, text='Back', font=('arial', 15, 'bold'), command=BackToMain)
     BackButton.pack(pady=10)
     BackButton.bind('<Escape>', BackToMain)
 
@@ -98,7 +95,6 @@ def revision(*args):
     global PlantName, PlantEntry, Animal, AnimalEntry, Inanimate, InanimateEntry, Country, CountryEntry
     global score, totalScore, ModifyButton, ModifyButton1, FinishButton
     global boyLable, girlLable, plantLable, animalLable, inanimateLable, countryLable
-    top.geometry('400x400')
     boy = BoyEntry.get()
     bc.setBoyName(boy)
     girl = GrilEntry.get()
@@ -130,56 +126,51 @@ def revision(*args):
     Country.destroy()
     CountryEntry.destroy()
 
-    score = Label(top, text=f'Score: {bc.getScore()}', font=('arial 12 bold'), fg='red', pady=5)
-    score.pack()
+    score = CTkLabel(top, text=f'Score: {bc.getScore()}', font=('arial', 15, 'bold'))
+    score.pack(pady=5)
     bc.sumTotal(bc.getScore())
-    totalScore = Label(top, text=f'Total Score: {bc.getTotalScore()}', font=('arial 15 bold'), fg='#33e586', pady=5)
-    totalScore.pack()
-    ModifyButton = Button(top, text='-5', width=25, font=('arial 12 bold'), command=ModifyScore)
+    totalScore = CTkLabel(top, text=f'Total Score: {bc.getTotalScore()}', font=('arial', 18, 'bold'))
+    totalScore.pack(pady=5)
+    ModifyButton = CTkButton(top, text='-5', font=('arial', 16, 'bold'), command=ModifyScore)
     ModifyButton.pack(pady=5)
-    ModifyButton1 = Button(top, text='+5', width=25, font=('arial 12 bold'), command=ModifyScorePlus)
+    ModifyButton1 = CTkButton(top, text='+5', font=('arial', 16, 'bold'), command=ModifyScorePlus)
     ModifyButton1.pack(pady=5)
-    FinishButton = Button(top, text='Finish', width=25, font=('arial 12 bold'), command=Home)
+    FinishButton = CTkButton(top, text='Finish', font=('arial', 16, 'bold'), command=Home)
     FinishButton.pack(pady=5)
     FinishButton.focus_set()
     ModifyButton.bind('<Key-m>', ModifyScore)
     FinishButton.bind('<Return>', Home)
 
-    boyLable = Label(top, text=f'Boy: {boy}', font=('arial 10 bold'))
-    boyLable.pack()
-    girlLable = Label(top, text=f'Girl: {girl}', font=('arial 10 bold'))
-    girlLable.pack()
-    plantLable = Label(top, text=f'Plant: {plant}', font=('arial 10 bold'))
-    plantLable.pack()
-    animalLable = Label(top, text=f'Animal: {animal}', font=('arial 10 bold'))
-    animalLable.pack()
-    inanimateLable = Label(top, text=f'Inanimate: {inanimate}', font=('arial 10 bold'))
-    inanimateLable.pack()
-    countryLable = Label(top, text=f'Country: {country}', font=('arial 10 bold'))
-    countryLable.pack()
+    boyLable = CTkLabel(top, text=f'Boy: {boy}', font=('arial', 14, 'bold'))
+    boyLable.pack(pady=5)
+    girlLable = CTkLabel(top, text=f'Girl: {girl}', font=('arial', 14, 'bold'))
+    girlLable.pack(pady=5)
+    plantLable = CTkLabel(top, text=f'Plant: {plant}', font=('arial', 14, 'bold'))
+    plantLable.pack(pady=5)
+    animalLable = CTkLabel(top, text=f'Animal: {animal}', font=('arial', 14, 'bold'))
+    animalLable.pack(pady=5)
+    inanimateLable = CTkLabel(top, text=f'Inanimate: {inanimate}', font=('arial', 14, 'bold'))
+    inanimateLable.pack(pady=5)
+    countryLable = CTkLabel(top, text=f'Country: {country}', font=('arial', 14, 'bold'))
+    countryLable.pack(pady=5)
 
 
 def Table():
     global score1, totalScore1
-    toplivil = Toplevel(top)
-    toplivil.geometry('300x100')
+    toplivil = CTkToplevel(top)
+    toplivil.geometry("400x100")
     toplivil.title('Score Table')
     toplivil.resizable(False, False)
-    score1 = Label(toplivil, text=f'Score: {bc.getScore()}', font=('arial 12 bold'), fg='red', pady=5)
-    score1.pack()
-    totalScore1 = Label(toplivil, text=f'Total Score: {bc.getTotalScore()}', font=('arial 15 bold'), fg='#33e586',
-                        pady=5)
-    totalScore1.pack()
-
-    toplivil.mainloop()
+    score1 = CTkLabel(toplivil, text=f'Score: {bc.getScore()}', font=('arial', 18, 'bold'))
+    score1.pack(pady=10)
+    totalScore1 = CTkLabel(toplivil, text=f'Total Score: {bc.getTotalScore()}', font=('arial', 20, 'bold'))
+    totalScore1.pack(pady=10)
 
 
 def UpdateTable():
     global score1, totalScore1
-    score1['text'] = f'Score: {bc.getScore()}'
-    score1['font'] = 'arial 12 bold'
-    totalScore1['text'] = f'Total Score: {bc.getTotalScore()}'
-    totalScore1['font'] = 'arial 15 bold'
+    score1.configure(text=f'Score: {bc.getScore()}')
+    totalScore1.configure(text=f'Total Score: {bc.getTotalScore()}')
 
 
 def ModifyScore(*args):
@@ -189,10 +180,8 @@ def ModifyScore(*args):
     else:
         bc.modifyScoreMinus()
         bc.ModifyTotalScoreMinus()
-        score['text'] = f'Score: {bc.getScore()}'
-        score['font'] = 'arial 12 bold'
-        totalScore['text'] = f'Total Score: {bc.getTotalScore()}'
-        totalScore['font'] = 'arial 15 bold'
+        score.configure(text=f'Score: {bc.getScore()}')
+        totalScore.configure(text=f'Total Score: {bc.getTotalScore()}')
         UpdateTable()
 
 
@@ -200,10 +189,8 @@ def ModifyScorePlus(*args):
     global score, totalScore
     bc.modifyScorePlus()
     bc.ModifyTotalScorePlus()
-    score['text'] = f'Score: {bc.getScore()}'
-    score['font'] = 'arial 12 bold'
-    totalScore['text'] = f'Total Score: {bc.getTotalScore()}'
-    totalScore['font'] = 'arial 15 bold'
+    score.configure(text=f'Score: {bc.getScore()}')
+    totalScore.configure(text=f'Total Score: {bc.getTotalScore()}')
     UpdateTable()
 
 
@@ -247,14 +234,13 @@ def BackToMain(*args):
     Window1()
 
 
-top = Tk()
-top.geometry('400x300')
+top = CTk()
 top.title('Bus Complete')
 top.resizable(False, False)
 top.iconbitmap()
 
-l1 = Label(top, text='Bus Complete', fg='#33e586', font=('arial 25 bold'), bg='gray', width=400)
-l1.pack()
+l1 = CTkLabel(top, text='Bus Complete', font=('arial', 25, 'bold'), width=400, fg_color="black")
+l1.pack(ipady=15)
 
 Window1()
 TableThread = threading.Thread(target=Table)
