@@ -1,11 +1,9 @@
 import threading
 from customtkinter import *
 from tkinter import messagebox
-
 from BusComplete import BusComplete
 
 bc = BusComplete()
-
 
 def Window1():
     global MasterLitter, MasterLable, MasterButton
